@@ -7,9 +7,12 @@
     tools:context=".SecondFragment">
 
     <TextView
-        android:id="@+id/textview_second"
+        android:id="@+id/tv_random_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="R"
+        android:textSize="40sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@id/button_second"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,5 +26,19 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textview_second" />
+        app:layout_constraintTop_toBottomOf="@id/tv_random_number" />
+
+    <TextView
+        android:id="@+id/textview_header"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:text="@string/tv_header_second_fragment"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/tv_random_number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

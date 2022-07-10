@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.firstapp_kotlin.databinding.FragmentFirstBinding
@@ -14,6 +15,16 @@ import com.example.firstapp_kotlin.databinding.FragmentFirstBinding
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
 class FirstFragmentKotlin : Fragment() {
+
+    private fun countMe(view: View) {
+        val showCountTextView = view.findViewById<TextView>(R.id.textview_first)
+        val countString = showCountTextView.text.toString()
+        var count = countString.toInt()
+        count++
+
+        // display new value in the text view
+        showCountTextView.text = count.toString()
+    }
 
     private var _binding: FragmentFirstBinding? = null
 
@@ -34,10 +45,21 @@ class FirstFragmentKotlin : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-            view.findViewById<Button>(R.id.button_toast).setOnClickListener() {
-                val myToast = Toast.makeText(context, "Hello toast!", Toast.LENGTH_SHORT)
-                myToast.show()
-            }
+        view.findViewById<Button>(R.id.button_toast).setOnClickListener() {
+            val myToast = Toast.makeText(context, "Hello toast!", Toast.LENGTH_SHORT)
+            myToast.show()
+        }
+
+        view.findViewById<Button>(R.id.button_count).setOnClickListener() {
+            countMe(view)
+        }
+
+        view.findViewById<Button>(R.id.button_next).setOnClickListener() {
+            val showCountTextView = view.findViewById<TextView>(R.id.textview_first)
+            val currentCount = showCountTextView.text.toString().toInt()
+            val action = FirstFragmentKotlinDirections.actionFirstFragmentToSecondFragment(currentCount)
+            findNavController().navigate(action)
+        }
 
     }
 
