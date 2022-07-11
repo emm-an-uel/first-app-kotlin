@@ -45,16 +45,16 @@ class FirstFragmentKotlin : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        view.findViewById<Button>(R.id.button_toast).setOnClickListener() {
+        view.findViewById<Button>(R.id.button_toast).setOnClickListener {
             val myToast = Toast.makeText(context, "Hello toast!", Toast.LENGTH_SHORT)
             myToast.show()
         }
 
-        view.findViewById<Button>(R.id.button_count).setOnClickListener() {
+        view.findViewById<Button>(R.id.button_count).setOnClickListener {
             countMe(view)
         }
 
-        view.findViewById<Button>(R.id.button_next).setOnClickListener() {
+        view.findViewById<Button>(R.id.button_next).setOnClickListener {
             val showCountTextView = view.findViewById<TextView>(R.id.textview_first)
             val currentCount = showCountTextView.text.toString().toInt()
             val action = FirstFragmentKotlinDirections.actionFirstFragmentToSecondFragment(currentCount)
