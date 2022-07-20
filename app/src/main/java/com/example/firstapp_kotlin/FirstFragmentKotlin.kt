@@ -1,5 +1,6 @@
 package com.example.firstapp_kotlin
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -15,6 +16,15 @@ import com.example.firstapp_kotlin.databinding.FragmentFirstBinding
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
 class FirstFragmentKotlin : Fragment() {
+
+    private fun storeCount(currentCount : Int) {
+        val string = currentCount.toString()
+        val filename = "myfile"
+        val fileContents = string
+        context!!.openFileOutput(filename, Context.MODE_PRIVATE).use {
+            it.write(fileContents.toByteArray())
+        }
+    }
 
     private fun countMe(view: View) {
         val showCountTextView = view.findViewById<TextView>(R.id.textview_first)
@@ -58,6 +68,10 @@ class FirstFragmentKotlin : Fragment() {
             val showCountTextView = view.findViewById<TextView>(R.id.textview_first)
             val currentCount = showCountTextView.text.toString().toInt()
             val action = FirstFragmentKotlinDirections.actionFirstFragmentToSecondFragment(currentCount)
+
+            // store currentCount locally
+            storeCount(currentCount)
+
             findNavController().navigate(action)
         }
 

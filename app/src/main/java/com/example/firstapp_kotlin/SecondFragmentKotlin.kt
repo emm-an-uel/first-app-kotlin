@@ -10,11 +10,17 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.firstapp_kotlin.databinding.FragmentSecondBinding
 import org.w3c.dom.Text
+import java.io.File
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
  */
 class SecondFragmentKotlin : Fragment() {
+
+    private fun displayNumber(view: View) {
+        val file = File(context!!.filesDir, "myfile")
+        binding.textView.text = file.readText()
+    }
 
     private var _binding: FragmentSecondBinding? = null
 
@@ -36,6 +42,9 @@ class SecondFragmentKotlin : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        // display stored number
+        displayNumber(view)
 
         binding.buttonSecond.setOnClickListener {
             findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
